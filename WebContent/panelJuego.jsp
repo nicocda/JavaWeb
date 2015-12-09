@@ -40,7 +40,7 @@
 				</tr>
 				<tr>
 					<td>Posicion final: <input type="text" name="posfx" id="posfx" value="" size="5"> <input type="text" name="posfy" id="posfy" value="" size="5"> </td>
-					<td> <input type="submit" value="Mover">  <a href="/AjedrezWeb/buscarOp">Volver</a></td>
+					<td> <input type="submit" value="Mover">  <a href="/AjedrezWeb/formularioInicio.html">Volver</a></td>
 				</tr>
 			</table>
 		</form>

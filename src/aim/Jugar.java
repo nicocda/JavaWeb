@@ -44,8 +44,13 @@ public class Jugar extends HttpServlet {
 		int dni1 = (int) session.getAttribute("dni");
 		int dni2;
 		if (request.getParameter("dni2") != null)
+		{
 		dni2 = Integer.parseInt(request.getParameter("dni2"));
-		else dni2 = Integer.parseInt(request.getParameter("comboBox"));
+		}
+		else 
+			{
+			dni2 = Integer.parseInt(request.getParameter("comboBox"));
+			}
 		Partida p = cp.cargarPartida(dni1, dni2);
 		session.setAttribute("partida", p);
 		request.getRequestDispatcher("panelJuego.jsp").forward(request, response);

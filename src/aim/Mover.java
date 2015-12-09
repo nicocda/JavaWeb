@@ -61,6 +61,29 @@ public class Mover extends HttpServlet {
 		Trebejo T = cp.buscarTrebejoPorClavePrimaria(posIX, posIY, p.getBlanco().getDni(), p.getNegro().getDni());
 
 		int opc = cp.mover(posfx, posfy, T, p);
+
+switch (opc)
+				{
+					case 1:
+						request.setAttribute("opc", "Hay un trebejo aliado en esa posición");
+						break;
+					case 2:
+						request.setAttribute("opc", "Has eliminado un trebejo enemigo");
+						break;
+					case 3:
+						request.setAttribute("opc", "Se movió un trebejo exitosamente");
+						break;
+					case 4:
+						request.setAttribute("opc", "Este trebejo no se puede mover así");
+						break;
+					case 5: 
+						request.setAttribute("opc", "Ganaste la Partida");
+						break;
+					default:
+						request.setAttribute("opc", "Error desconocido, consulte al operador");
+						break;
+				}
+		request.getRequestDispatcher("mensajeMovimiento.jsp").forward(request, response);
 	}
 
 }
