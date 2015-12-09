@@ -25,14 +25,22 @@ public class BuscarOponentes extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		int dni = Integer.parseInt(request.getParameter("dni"));
-		ArrayList<Jugador> jugadores= new ArrayList<Jugador>();
-		jugadores=cp.buscarOponentes(dni);
-		System.out.println("todo bien");
 		HttpSession session = request.getSession(true);
-		session.setAttribute("dni", dni);
-		session.setAttribute("oponentes", jugadores);
-		request.getRequestDispatcher("SeleccionOponente.jsp").forward(request, response);
+		try
+		{
+			int dni = Integer.parseInt(request.getParameter("dni"));
+			ArrayList<Jugador> jugadores= new ArrayList<Jugador>();
+			jugadores=cp.buscarOponentes(dni);
+			System.out.println("todo bien");
+			session.setAttribute("dni", dni);
+			session.setAttribute("oponentes", jugadores);
+			request.getRequestDispatcher("SeleccionOponente.jsp").forward(request, response);
+		}
+		catch(NumberFormatException nfe)
+		{
+			session.setAttribute("mostrarAlerta", "Yes");
+			response.sendRedirect("formularioInicio.jsp");
+		}
 	}
 	
 }
