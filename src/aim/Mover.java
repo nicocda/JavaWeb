@@ -40,13 +40,27 @@ public class Mover extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		Partida p = (Partida) session.getAttribute("partida");
-		Trebejo t = (Trebejo) request.getAttribute("fichasBlancas");
+		String  t = request.getParameter("fichasBlancas");
 		int posfx = Integer.parseInt(request.getParameter("posfx"));
 		int posfy  = Integer.parseInt(request.getParameter("posfy"));
-		int opc = cp.mover(posfx, posfy, t, p);
+		
+		int posIX = 0, posIY = 0, contador = 0;
+		for (int i = 0; i <t.length(); i++)
+		{
+			if (t.charAt(i) == '(')
+			{
+				contador++;
+				if (contador == 1)
+					posIX = Character.getNumericValue(t.charAt(i+1));
+				if (contador == 2)
+					posIY = Character.getNumericValue(t.charAt(i+1));
+			}
+		}
+		Trebejo T = cp.buscarTrebejoPorClavePrimaria(posIX, posIY, p.getBlanco().getDni(), p.getNegro().getDni());
+
+		int opc = cp.mover(posfx, posfy, T, p);
 	}
 
 }

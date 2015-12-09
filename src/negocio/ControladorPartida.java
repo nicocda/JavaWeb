@@ -111,8 +111,13 @@ public class ControladorPartida
 		}
 		return i;
 	}
-		
+
+	public Trebejo buscarTrebejoPorClavePrimaria(int posIX, int posIY, int dni, int dni2) 
+	{
+		return CatalogoTrebejos.getInstance().buscarTrebejoPorClavePrimaria(posIX, posIY, dni, dni2);
 	}
+		
+}
 
 
 

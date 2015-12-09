@@ -3,6 +3,7 @@ package datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import conexion.Conexion;
 import entidades.Alfil;
 import entidades.Caballo;
+import entidades.Jugador;
+import entidades.Partida;
 import entidades.Peon;
 import entidades.Reina;
 import entidades.Rey;
@@ -173,6 +176,73 @@ public class CatalogoTrebejos
 		}
 		
 		
+	}
+	public Trebejo buscarTrebejoPorClavePrimaria(int posIX, int posIY, int dni, int dni2) 
+	{
+		Trebejo t = null;
+		String sql=	"SELECT * FROM TREBEJOS WHERE posX = ? AND posY = ? AND dni1 = ? AND dni2 = ?";
+		PreparedStatement sentencia=null;
+		ResultSet rs=null;
+		Connection con = Conexion.getInstancia().getConn();
+		
+		try 
+		{			
+			sentencia= con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			sentencia.setInt(1, posIX);
+			sentencia.setInt(2, posIY);
+			sentencia.setInt(3, dni);
+			sentencia.setInt(4, dni2);
+			
+			rs= sentencia.executeQuery();
+			
+			if (rs.next())
+			{
+				char tipo = rs.getString("tipo").charAt(0);
+				switch(tipo)
+				{
+				case 'P' : t= new Peon(tipo, rs.getInt("posX"), rs.getInt("posY"), rs.getBoolean("color"), rs.getInt("dni1"), rs.getInt("dni2"));
+							break;
+				case 'T' : t= new Torre(tipo, rs.getInt("posX"), rs.getInt("posY"), rs.getBoolean("color"), rs.getInt("dni1"), rs.getInt("dni2"));
+							break;
+				case 'C' : t= new Caballo(tipo, rs.getInt("posX"), rs.getInt("posY"), rs.getBoolean("color"), rs.getInt("dni1"), rs.getInt("dni2"));
+							break;
+				case 'A' : t= new Alfil(tipo, rs.getInt("posX"), rs.getInt("posY"), rs.getBoolean("color"), rs.getInt("dni1"), rs.getInt("dni2"));
+							break;
+				case 'K' : t= new Rey(tipo, rs.getInt("posX"), rs.getInt("posY"), rs.getBoolean("color"), rs.getInt("dni1"), rs.getInt("dni2"));
+							break;
+				case 'Q' : t=new Reina(tipo, rs.getInt("posX"), rs.getInt("posY"), rs.getBoolean("color"), rs.getInt("dni1"), rs.getInt("dni2"));
+							break;
+				default: t = null;
+							break;
+				}	
+			}
+
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(rs!=null)
+				{
+					rs.close();
+				}
+				if(null!=sentencia && !sentencia.isClosed())
+						{
+					sentencia.close();
+				}
+				Conexion.getInstancia().CloseConn();
+			}
+			catch (SQLException sqle)
+			{
+				sqle.printStackTrace();
+			}
+		}
+		return t;
 	}
 	
 }

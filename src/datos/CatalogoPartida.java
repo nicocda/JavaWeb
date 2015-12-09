@@ -209,10 +209,10 @@ public class CatalogoPartida
 	{
 		ArrayList<Jugador> oponentes = new ArrayList<Jugador>();
 		
-		String sql="select p.blanco, p.negro, j1.nombre, j1. apellido, j2.nombre, j2.apellido "
-				+ "from partida p"
-				+ "inner join jugadores j1 on j1.dni=p.blanco"
-				+ "inner join jugadores j2 on j2.dni=p.blanco"
+		String sql="select blanco, negro, j1.nombre, j1. apellido, j2.nombre, j2.apellido"
+				+ " from partida p"
+				+ " inner join jugadores j1 on j1.dni=blanco"
+				+ " inner join jugadores j2 on j2.dni=blanco"
 				+ " where blanco = ? or negro = ?;";
 		PreparedStatement sentencia=null;
 		ResultSet rs=null;
@@ -226,7 +226,7 @@ public class CatalogoPartida
 			
 			while (rs.next())
 			{			
-				int blanco = rs.getInt("p.blanco"), negro = rs.getInt("p.negro");
+				int blanco = rs.getInt("blanco"), negro = rs.getInt("negro");
 				Jugador j = new Jugador();
 				if(blanco == dni)
 				{
