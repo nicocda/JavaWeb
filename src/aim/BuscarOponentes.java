@@ -29,16 +29,23 @@ public class BuscarOponentes extends HttpServlet {
 		try
 		{
 			int dni = Integer.parseInt(request.getParameter("dni"));
-			ArrayList<Jugador> jugadores= new ArrayList<Jugador>();
-			jugadores=cp.buscarOponentes(dni);
-			System.out.println("todo bien");
-			session.setAttribute("dni", dni);
-			session.setAttribute("oponentes", jugadores);
-			request.getRequestDispatcher("SeleccionOponente.jsp").forward(request, response);
+			if (cp.buscarJugador(dni) != null)
+			{
+				ArrayList<Jugador> jugadores= new ArrayList<Jugador>();
+				jugadores=cp.buscarOponentes(dni);
+				session.setAttribute("dni", dni);
+				session.setAttribute("oponentes", jugadores);
+				request.getRequestDispatcher("SeleccionOponente.jsp").forward(request, response);	
+			}
+			else
+			{
+				session.setAttribute("mostrarAlerta", "2");
+				response.sendRedirect("formularioInicio.jsp");
+			}
 		}
 		catch(NumberFormatException nfe)
 		{
-			session.setAttribute("mostrarAlerta", "Yes");
+			session.setAttribute("mostrarAlerta", "1");
 			response.sendRedirect("formularioInicio.jsp");
 		}
 	}

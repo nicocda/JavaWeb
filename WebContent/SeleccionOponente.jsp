@@ -41,7 +41,7 @@
        <tr>
        <td> 
         </br> 
-       <input type="text" name="dni2" id="dni2" value="" placeholder="O Ingrese DNI Oponente">
+       <input type="text" name="dni2" id="dni2" value="" placeholder="Ingrese DNI Oponente">
        </td>
        <td align="center">
         </br> 
