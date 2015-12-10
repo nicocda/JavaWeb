@@ -12,6 +12,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Panel Inicial</title>
   <link rel="stylesheet" href="css/estiloEjemploLogin.css">
+  
+  <script type="text/javascript">
+	 var Msg = '<%=session.getAttribute("mostrarAlerta2")%>';
+	  	if (Msg == "1") 
+	  	{
+			function alertName()
+			{
+				alert("Ingrese un nùmero!");
+	  		}
+	  	}
+	  	if (Msg == "2")
+	  	{
+	  		function alertName()
+	  		{
+	  			alert("El oponente no existe!");
+	  		}
+	  	}
+  </script>
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
@@ -53,3 +71,4 @@
     </div>
   </section>
 
+  <script type="text/javascript"> window.onload = alertName; </script>

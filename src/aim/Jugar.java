@@ -43,17 +43,33 @@ public class Jugar extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		int dni1 = (int) session.getAttribute("dni");
 		int dni2;
-		if (request.getParameter("dni2") != null)
-		{
-		dni2 = Integer.parseInt(request.getParameter("dni2"));
-		}
-		else 
+		try
+		{	
+			if (request.getParameter("dni2") != "")
 			{
-			dni2 = Integer.parseInt(request.getParameter("comboBox"));
+				dni2 = Integer.parseInt(request.getParameter("dni2"));
 			}
-		Partida p = cp.cargarPartida(dni1, dni2);
-		session.setAttribute("partida", p);
-		request.getRequestDispatcher("panelJuego.jsp").forward(request, response);
+			else 
+			{
+				dni2 = Integer.parseInt(request.getParameter("comboBox"));
+			}
+			if (cp.buscarJugador(dni2) != null)
+			{
+				Partida p = cp.cargarPartida(dni1, dni2);
+				session.setAttribute("partida", p);
+				request.getRequestDispatcher("panelJuego.jsp").forward(request, response);
+			}
+			else
+			{
+				session.setAttribute("mostrarAlerta2", "2");
+				response.sendRedirect("SeleccionOponente.jsp");
+			}
+		}
+		catch (NumberFormatException nfe)
+		{
+			session.setAttribute("mostrarAlerta2", "1");
+			response.sendRedirect("SeleccionOponente.jsp");
+		}
 	}
 
 }
