@@ -33,7 +33,7 @@
 	  	{
 	  		function alertName()
 	  		{
-	  			alert("El oponente sos vos, conseguite un amigo vieja!");
+	  			alert("No se puede seleccionar uno mismo como oponente");
 	  		}
 	  	}
   </script>

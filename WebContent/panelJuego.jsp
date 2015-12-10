@@ -75,7 +75,7 @@
 				<input type="text" name="posfx" id="posfx" value="" placeholder="Ingrese la posición X"> 
 				<input type="text" name="posfy" id="posfy" value="" placeholder="Ingrese la posición Y">
 				<input type="submit" value="Mover"> 
-				<div id = "divVolver">
+				<div class = "divVolver">
 					<a href="/AjedrezWeb/formularioInicio.html">Volver</a>
 				</div>
 		</form>

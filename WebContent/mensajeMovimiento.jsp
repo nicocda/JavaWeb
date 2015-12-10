@@ -4,18 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mensaje</title>
+<link rel="stylesheet" href="css/SeleccionOponente.css">
 </head>
 <body>
-
-<%=request.getAttribute("opc")%>
-
-<br>
-	<a href="/AjedrezWeb/panelJuego.jsp"> Volver al panel de Juego</a>
-<br>
-	<a href="/AjedrezWeb/SeleccionOponente.jsp"> Volver a la Seleccion de Oponente</a>
-<br>
-	<a href="/AjedrezWeb/formularioInicio.html"> Volver al panel Inicial</a>
-
+	<section>
+    	<div>
+	    	<h1>Mensaje del sistema</h1>
+			<form>	
+				<label id = "mensaje">	<%=request.getAttribute("opc")%></label>
+				<br>
+					<div class = "divVolver">
+						<a href="/AjedrezWeb/panelJuego.jsp"> Volver al panel de Juego</a>
+					</div>
+				<br>
+					<div class = "divVolver">
+						<a href="/AjedrezWeb/SeleccionOponente.jsp"> Volver a la Seleccion de Oponente</a>
+					</div>
+				<br>
+				<div class = "divVolver">
+					<a href="/AjedrezWeb/formularioInicio.html"> Volver al panel Inicial</a>
+				</div>
+			</form>
+		</div>
+	</section>
 </body>
 </html>
