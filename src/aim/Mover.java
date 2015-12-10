@@ -62,7 +62,7 @@ public class Mover extends HttpServlet {
 
 		int opc = cp.mover(posfx, posfy, T, p);
 
-switch (opc)
+		switch (opc)
 				{
 					case 1:
 						request.setAttribute("opc", "Hay un trebejo aliado en esa posición");
