@@ -15,18 +15,25 @@
   
   <script type="text/javascript">
 	 var Msg = '<%=session.getAttribute("mostrarAlerta2")%>';
-	  	if (Msg == "1") 
+	  	if (Msg == 1) 
 	  	{
 			function alertName()
 			{
 				alert("Ingrese un nùmero!");
 	  		}
 	  	}
-	  	if (Msg == "2")
+	  	if (Msg == 2)
 	  	{
 	  		function alertName()
 	  		{
 	  			alert("El oponente no existe!");
+	  		}
+	  	}
+	  	if (Msg == 3)
+	  	{
+	  		function alertName()
+	  		{
+	  			alert("El oponente sos vos, conseguite un amigo vieja!");
 	  		}
 	  	}
   </script>
