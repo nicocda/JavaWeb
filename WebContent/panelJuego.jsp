@@ -7,69 +7,76 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Ajedrez Match 2.0</title>
+		<link rel="stylesheet" href="css/SeleccionOponente.css">
 	</head>
 	<body>
 		<% Partida p = (Partida) session.getAttribute("partida"); %>
-		<form action="Mover" method="post">
-			<table>
-				<tr>
-				<% if(p.getBlanco().getDni() == (Integer)session.getAttribute("dni")){%>
-					<td> <h3>Fichas de <%= p.getBlanco().getNombre() %></h3></td>
-					<td> <h3>Fichas de <%= p.getNegro().getNombre() %></h3></td>
-				</tr>
+		<form class = form2 action="Mover" method="post">
+			<% if(p.getBlanco().getDni() == (Integer)session.getAttribute("dni")){%>
+				<table>
 				<tr>
 					<td>
+					<label class = "jugadoresNombres" = for = "tabla1">Fichas de <%= p.getBlanco().getNombre() %></label>
+					<select id = "tabla1" class = "tabla" name="fichasBlancas" size="16" <%if(p.getTurno()){%>disabled<%}%>>
+						<%for(Trebejo t : p.getFichas())
+						{ %>
+						<%if (t.getColor()){%>
+						<option value="<%= t %>"> <%= t %> </option>
+						<%} %>
+						<%} %>
+					</select>
+					</td>
 
-						<select name="fichasBlancas" size="16" <%if(!p.getTurno()){%>disabled<%}%>>
-							<%for(Trebejo t : p.getFichas())
-							{ %>
-							<%if (t.getColor()){%>
-							<option value="<%= t %>"> <%= t %> </option>
-							<%} %>
-							<%} %>
-						</select>
-						</td>
-						<td>
-						<select name="fichasNegras" size="16" disabled>
-							<%for(Trebejo t : p.getFichas())
-							{ %>
-							<%if (!t.getColor()) {%>
-							<option value="<%= t %>"> <%= t %> </option>
-							<%} %>
-							<%} %>
-						</select>
-					<%}else{%>
-				<td> <h3>Fichas de <%= p.getNegro().getNombre() %></h3></td>
-				<td> <h3>Fichas de <%= p.getBlanco().getNombre() %></h3></td>
-					</tr>
-					<tr>
-						<td>
-						<select name="fichasBlancas" size="16" <%if(p.getTurno()){%>disabled<%}%>>
-							<%for(Trebejo t : p.getFichas())
-							{ %>
-							<%if (!t.getColor()){%>
-							<option value="<%= t %>"> <%= t %> </option>
-							<%} %>
-							<%} %>
-						</select>
-						</td>
-						<td>
-						<select name="fichasNegras" size="16" disabled>
-							<%for(Trebejo t : p.getFichas())
-							{ %>
-							<%if (t.getColor()) {%>
-							<option value="<%= t %>"> <%= t %> </option>
-							<%} %>
-							<%} %>
-						</select>
-					<%}%>
+					<td>
+					<label class = "jugadoresNombres" for = "tabla2">Fichas de <%= p.getNegro().getNombre() %></label>
+					<select id = "tabla2" class = "tabla" name="fichasNegras" size="16" disabled>
+						<%for(Trebejo t : p.getFichas())
+						{ %>
+						<%if (!t.getColor()) {%>
+						<option value="<%= t %>"> <%= t %> </option>
+						<%} %>
+						<%} %>
+					</select>
 					</td>
 				</tr>
+				</table>
+					<%}else{%>
+				
+				<table>
 				<tr>
-					<td>Posicion final: <input type="text" name="posfx" id="posfx" value="" size="5"> <input type="text" name="posfy" id="posfy" value="" size="5"> </td>
-					<td> <input type="submit" value="Mover">  <a href="/AjedrezWeb/formularioInicio.html">Volver</a></td>
+					<td>
+					<label class = "jugadoresNombres" for = "tabla3">Fichas de <%= p.getNegro().getNombre() %></label>
+					<select id = "tabla3" class = "tabla" name="fichasBlancas" size="16" <%if(!p.getTurno()){%>disabled<%}%>>
+						<%for(Trebejo t : p.getFichas())
+						{ %>
+						<%if (!t.getColor()){%>
+						<option value="<%= t %>"> <%= t %> </option>
+						<%} %>
+						<%} %>
+					</select>
+					</td>
+					
+					<td>
+					<label class = "jugadoresNombres" for = "tabla4">Fichas de <%= p.getBlanco().getNombre() %></label>
+					<select id = "tabla4" class = "tabla" name="fichasNegras" size="16" disabled>
+						<%for(Trebejo t : p.getFichas())
+						{ %>
+						<%if (t.getColor()) {%>
+						<option value="<%= t %>"> <%= t %> </option>
+						<%} %>
+						<%} %>
+					</select>
+					</td>
 				</tr>
-			</table>
+				</table>
+					<%}%>
+				<label for=posfx>Posicion final: </label>
+				<input type="text" name="posfx" id="posfx" value="" placeholder="Ingrese la posición X"> 
+				<input type="text" name="posfy" id="posfy" value="" placeholder="Ingrese la posición Y">
+				<input type="submit" value="Mover"> 
+				<div id = "divVolver">
+					<a href="/AjedrezWeb/formularioInicio.html">Volver</a>
+				</div>
 		</form>
 	</body>
 </html>

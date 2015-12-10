@@ -11,9 +11,9 @@
 <%=request.getAttribute("opc")%>
 
 <br>
-<a href="/AjedrezWeb/SeleccionOponente.jsp"> Volver a la Seleccion de Oponente</a>
+	<a href="/AjedrezWeb/SeleccionOponente.jsp"> Volver a la Seleccion de Oponente</a>
 <br>
-<a href="/AjedrezWeb/formularioInicio.html"> Volver al panel Inicial</a>
+	<a href="/AjedrezWeb/formularioInicio.html"> Volver al panel Inicial</a>
 
 </body>
 </html>

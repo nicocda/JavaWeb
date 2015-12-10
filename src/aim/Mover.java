@@ -43,46 +43,58 @@ public class Mover extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Partida p = (Partida) session.getAttribute("partida");
 		String  t = request.getParameter("fichasBlancas");
+		try
+		{
 		int posfx = Integer.parseInt(request.getParameter("posfx"));
 		int posfy  = Integer.parseInt(request.getParameter("posfy"));
-		
-		int posIX = 0, posIY = 0, contador = 0;
-		for (int i = 0; i <t.length(); i++)
-		{
-			if (t.charAt(i) == '(')
+		if (t != null)
+		{		
+			int posIX = 0, posIY = 0, contador = 0;
+			for (int i = 0; i <t.length(); i++)
 			{
-				contador++;
-				if (contador == 1)
-					posIX = Character.getNumericValue(t.charAt(i+1));
-				if (contador == 2)
-					posIY = Character.getNumericValue(t.charAt(i+1));
-			}
-		}
-		Trebejo T = cp.buscarTrebejoPorClavePrimaria(posIX, posIY, p.getBlanco().getDni(), p.getNegro().getDni());
-
-		int opc = cp.mover(posfx, posfy, T, p);
-
-		switch (opc)
+				if (t.charAt(i) == '(')
 				{
-					case 1:
-						request.setAttribute("opc", "Hay un trebejo aliado en esa posición");
-						break;
-					case 2:
-						request.setAttribute("opc", "Has eliminado un trebejo enemigo");
-						break;
-					case 3:
-						request.setAttribute("opc", "Se movió un trebejo exitosamente");
-						break;
-					case 4:
-						request.setAttribute("opc", "Este trebejo no se puede mover así");
-						break;
-					case 5: 
-						request.setAttribute("opc", "Ganaste la Partida");
-						break;
-					default:
-						request.setAttribute("opc", "Error desconocido, consulte al operador");
-						break;
+					contador++;
+					if (contador == 1)
+						posIX = Character.getNumericValue(t.charAt(i+1));
+					if (contador == 2)
+						posIY = Character.getNumericValue(t.charAt(i+1));
 				}
+			}
+			Trebejo T = cp.buscarTrebejoPorClavePrimaria(posIX, posIY, p.getBlanco().getDni(), p.getNegro().getDni());
+	
+			int opc = cp.mover(posfx, posfy, T, p);
+	
+			switch (opc)
+					{
+						case 1:
+							request.setAttribute("opc", "Hay un trebejo aliado en esa posición");
+							break;
+						case 2:
+							request.setAttribute("opc", "Has eliminado un trebejo enemigo");
+							break;
+						case 3:
+							request.setAttribute("opc", "Se movió un trebejo exitosamente");
+							break;
+						case 4:
+							request.setAttribute("opc", "Este trebejo no se puede mover así");
+							break;
+						case 5: 
+							request.setAttribute("opc", "Ganaste la Partida");
+							break;
+						default:
+							request.setAttribute("opc", "Error desconocido, consulte al operador");
+							break;
+					}
+		}
+		else
+			request.setAttribute("opc", "Debe seleccionar una pieza de la lista");
+		}
+		catch(NumberFormatException nfe)
+		{
+			request.setAttribute("opc", "La posición inicial y final deben ser números");
+		}
+		
 		request.getRequestDispatcher("mensajeMovimiento.jsp").forward(request, response);
 	}
 

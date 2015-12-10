@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Login Form</title>
-  <link rel="stylesheet" href="css/estiloEjemploLogin.css">
+  <link rel="stylesheet" href="css/SeleccionOponente.css">
   <script>
   function carga()
   {
@@ -19,13 +19,12 @@
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body onload="carga();">
-  <section class="container">
-    <div class="login">
+  <section>
+    <div>
 	<h1>Bienvenido a Ajedrez Match 2.0 Version Web</h1>
-      <form action="buscarOp" method="post" onsubmit="return valideDatos();">
-        <p><input type="text" name="dni" id="dni" value="" placeholder="Ingrese su DNI"></p>
-        <p class="submit"><input type="submit" name="aceptar" value="Buscar Oponente"></p>
-       
+      <form action="buscarOp" method="post">
+        <input type="text" name="dni" id="dni" value="" placeholder="Ingrese su DNI">
+        <input type="submit" name="aceptar" value="Buscar Oponente">
       </form>
     </div>
   </section>

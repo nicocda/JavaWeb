@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Panel Inicial</title>
-  <link rel="stylesheet" href="css/estiloEjemploLogin.css">
+  <link rel="stylesheet" href="css/SeleccionOponente.css">
   
   <script type="text/javascript">
 	 var Msg = '<%=session.getAttribute("mostrarAlerta2")%>';
@@ -40,17 +40,15 @@
   <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
-  <section class="container">
-    <div class="login">
+  <section>
+    <div>
       <h1>Bienvenido Jugador N° <%= session.getAttribute("dni") %></h1>
       <form action="Jugar" method="post">
-        
+
         <% ArrayList<Jugador> jugadores = (ArrayList<Jugador>) session.getAttribute("oponentes"); 
        		%>
-        <table>
-        <tr>
-        <td>Seleccione Oponente: </td> 
-        <td>
+          
+            <label for="comboBox">Seleccione Oponente:</label>
             <select name="comboBox" id="comboBox">
             	<% 
             	for(int i=0; i< jugadores.size(); i++)
@@ -61,19 +59,9 @@
             	}
             	%>
             </select>
-        </td>
-        </tr>
-       <tr>
-       <td> 
-        </br> 
+       <label for="dni2">Ingrese nuevo oponente:</label> 
        <input type="text" name="dni2" id="dni2" value="" placeholder="Ingrese DNI Oponente">
-       </td>
-       <td align="center">
-        </br> 
-        <input type="submit" name="jugar" id="jugar" value="Jugar">
-        </td>
-        </tr>
-        </table>
+       <input type="submit" name="jugar" id="jugar" value="Jugar">
       </form>
     </div>
   </section>
