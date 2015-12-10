@@ -116,6 +116,11 @@ public class ControladorPartida
 	{
 		return CatalogoTrebejos.getInstance().buscarTrebejoPorClavePrimaria(posIX, posIY, dni, dni2);
 	}
+	
+	public Jugador buscarJugador(int dni)
+	{
+		return cj.buscarJugador(dni);
+	}
 		
 }
 
