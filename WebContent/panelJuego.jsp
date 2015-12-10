@@ -27,6 +27,7 @@
 					</select>
 					</td>
 
+
 					<td>
 					<label class = "jugadoresNombres" for = "tabla2">Fichas de <%= p.getNegro().getNombre() %></label>
 					<select id = "tabla2" class = "tabla" name="fichasNegras" size="16" disabled>
@@ -59,12 +60,12 @@
 					<td>
 					<label class = "jugadoresNombres" for = "tabla4">Fichas de <%= p.getBlanco().getNombre() %></label>
 					<select id = "tabla4" class = "tabla" name="fichasNegras" size="16" disabled>
-						<%for(Trebejo t : p.getFichas())
-						{ %>
+					<%for(Trebejo t : p.getFichas())
+					{ %>
 						<%if (t.getColor()) {%>
 						<option value="<%= t %>"> <%= t %> </option>
 						<%} %>
-						<%} %>
+					<%} %>
 					</select>
 					</td>
 				</tr>
