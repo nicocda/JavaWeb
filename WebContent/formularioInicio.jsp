@@ -13,14 +13,14 @@
  
  <script type="text/javascript">
 	 var Msg = '<%=session.getAttribute("mostrarAlerta")%>';
-	  	if (Msg == "1") 
+	  	if (Msg == 1) 
 	  	{
 			function alertName()
 			{
 				alert("Ingrese un nùmero!");
 	  		}
 	  	}
-	  	if (Msg == "2")
+	  	if (Msg == 2)
 	  	{
 	  		function alertName()
 	  		{
@@ -34,7 +34,7 @@
 <body onload="carga();">
   <section class="container">
     <div class="login">
-      <h1>Selección de oponentes</h1>
+	<h1>Bienvenido a Ajedrez Match 2.0 Version Web</h1>
       <form action="buscarOp" method="post" onsubmit="return valideDatos();">
         <p><input type="text" name="dni" id="dni" value="" placeholder="Ingrese su DNI"></p>
         <p class="submit"><input type="submit" name="aceptar" value="Buscar Oponente"></p>

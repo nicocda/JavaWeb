@@ -35,17 +35,17 @@ public class BuscarOponentes extends HttpServlet {
 				jugadores=cp.buscarOponentes(dni);
 				session.setAttribute("dni", dni);
 				session.setAttribute("oponentes", jugadores);
-				request.getRequestDispatcher("SeleccionOponente.jsp").forward(request, response);	
+				request.getRequestDispatcher("SeleccionOponente.jsp").forward(request, response);
 			}
 			else
 			{
-				session.setAttribute("mostrarAlerta", "2");
+				session.setAttribute("mostrarAlerta", 2);
 				response.sendRedirect("formularioInicio.jsp");
 			}
 		}
 		catch(NumberFormatException nfe)
 		{
-			session.setAttribute("mostrarAlerta", "1");
+			session.setAttribute("mostrarAlerta", 1);
 			response.sendRedirect("formularioInicio.jsp");
 		}
 	}
