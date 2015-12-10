@@ -20,7 +20,7 @@
 				<tr>
 					<td>
 
-						<select name="fichasBlancas" size="16" <%if(!p.getTurno()){%>disabled<%}%>>
+						<select name="fichasBlancas" size="16" <%if(p.getTurno()){%>disabled<%}%>>
 							<%for(Trebejo t : p.getFichas())
 							{ %>
 							<%if (t.getColor()){%>
@@ -44,7 +44,7 @@
 					</tr>
 					<tr>
 						<td>
-						<select name="fichasBlancas" size="16" <%if(p.getTurno()){%>disabled<%}%>>
+						<select name="fichasBlancas" size="16" <%if(!p.getTurno()){%>disabled<%}%>>
 							<%for(Trebejo t : p.getFichas())
 							{ %>
 							<%if (!t.getColor()){%>

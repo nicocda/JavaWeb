@@ -14,6 +14,8 @@
 <a href="/AjedrezWeb/SeleccionOponente.jsp"> Volver a la Seleccion de Oponente</a>
 <br>
 <a href="/AjedrezWeb/formularioInicio.html"> Volver al panel Inicial</a>
+<br>
+<a href="/AjedrezWeb/panelJuego.jsp"> Volver al panel de Juego</a>
 
 </body>
 </html>
