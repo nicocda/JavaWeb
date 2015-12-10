@@ -13,29 +13,56 @@
 		<form action="Mover" method="post">
 			<table>
 				<tr>
+				<% if(p.getBlanco().getDni() == (Integer)session.getAttribute("dni")){%>
 					<td> <h3>Fichas de <%= p.getBlanco().getNombre() %></h3></td>
 					<td> <h3>Fichas de <%= p.getNegro().getNombre() %></h3></td>
 				</tr>
 				<tr>
 					<td>
-					<select name="fichasBlancas" size="16">
-						<%for(Trebejo t : p.getFichas())
-						{ %>
-						<%if (t.getColor()){%>
-						<option value="<%= t %>"> <%= t %> </option>
-						<%} %>
-						<%} %>
-					</select>
-					</td>
-					<td>
-					<select name="fichasNegras" size="16">
-						<%for(Trebejo t : p.getFichas())
-						{ %>
-						<%if (!t.getColor()) {%>
-						<option value="<%= t %>"> <%= t %> </option>
-						<%} %>
-						<%} %>
-					</select>
+
+						<select name="fichasBlancas" size="16" <%if(!p.getTurno()){%>disabled<%}%>>
+							<%for(Trebejo t : p.getFichas())
+							{ %>
+							<%if (t.getColor()){%>
+							<option value="<%= t %>"> <%= t %> </option>
+							<%} %>
+							<%} %>
+						</select>
+						</td>
+						<td>
+						<select name="fichasNegras" size="16" disabled>
+							<%for(Trebejo t : p.getFichas())
+							{ %>
+							<%if (!t.getColor()) {%>
+							<option value="<%= t %>"> <%= t %> </option>
+							<%} %>
+							<%} %>
+						</select>
+					<%}else{%>
+				<td> <h3>Fichas de <%= p.getNegro().getNombre() %></h3></td>
+				<td> <h3>Fichas de <%= p.getBlanco().getNombre() %></h3></td>
+					</tr>
+					<tr>
+						<td>
+						<select name="fichasBlancas" size="16" <%if(p.getTurno()){%>disabled<%}%>>
+							<%for(Trebejo t : p.getFichas())
+							{ %>
+							<%if (!t.getColor()){%>
+							<option value="<%= t %>"> <%= t %> </option>
+							<%} %>
+							<%} %>
+						</select>
+						</td>
+						<td>
+						<select name="fichasNegras" size="16" disabled>
+							<%for(Trebejo t : p.getFichas())
+							{ %>
+							<%if (t.getColor()) {%>
+							<option value="<%= t %>"> <%= t %> </option>
+							<%} %>
+							<%} %>
+						</select>
+					<%}%>
 					</td>
 				</tr>
 				<tr>

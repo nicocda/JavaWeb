@@ -55,19 +55,27 @@ public class Jugar extends HttpServlet {
 			}
 			if (cp.buscarJugador(dni2) != null)
 			{
-				Partida p = cp.cargarPartida(dni1, dni2);
-				session.setAttribute("partida", p);
-				request.getRequestDispatcher("panelJuego.jsp").forward(request, response);
+				if (dni1 != dni2)
+				{
+					Partida p = cp.cargarPartida(dni1, dni2);
+					session.setAttribute("partida", p);
+					request.getRequestDispatcher("panelJuego.jsp").forward(request, response);
+				}
+				else
+				{
+					session.setAttribute("mostrarAlerta2", 3);
+					response.sendRedirect("SeleccionOponente.jsp");
+				}
 			}
 			else
 			{
-				session.setAttribute("mostrarAlerta2", "2");
+				session.setAttribute("mostrarAlerta2", 2);
 				response.sendRedirect("SeleccionOponente.jsp");
 			}
 		}
 		catch (NumberFormatException nfe)
 		{
-			session.setAttribute("mostrarAlerta2", "1");
+			session.setAttribute("mostrarAlerta2", 1);
 			response.sendRedirect("SeleccionOponente.jsp");
 		}
 	}
